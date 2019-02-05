@@ -13,6 +13,7 @@ package studentlist;
 public class Student {
  private String name;
     private int ID;
+    
  private int maxHours;
  private int Marks;
  
@@ -46,7 +47,7 @@ public class Student {
     {   
         return ID;
     }
-  
+  //this is a to string method
     public String toString()
     {
        return "Student";
