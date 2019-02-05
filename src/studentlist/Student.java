@@ -13,7 +13,7 @@ package studentlist;
 public class Student {
  private String name;
     private int ID;
-    private maxHours;
+  maxHours;
     public Student()
     {
         name = "Name Not Set";
