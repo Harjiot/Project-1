@@ -28,6 +28,7 @@ public class Student {
           this.name = givenName;
           this.ID = givenID;
     }
+ //this is  a student method
     public void setName(String givenName)
     {
        this.name = givenName;
