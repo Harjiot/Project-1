@@ -15,11 +15,13 @@ public class Student {
     private int ID;
  private int maxHours;
  private int Marks;
+ 
     public Student()
     {
         name = "Name Not Set";
         ID = 0;
     }
+    //defalut constructor for student class
     public Student(String givenName, int givenID)
     {
           this.name = givenName;
@@ -43,5 +45,10 @@ public class Student {
     public int getID ()
     {   
         return ID;
+    }
+  
+    public String toString()
+    {
+       return "Student";
     }
 }
