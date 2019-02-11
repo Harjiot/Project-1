@@ -63,28 +63,24 @@ public class CardTrick {
             {
                 
                 System.out.println("you have Wining opportunity");
-                break;
-            
-            
-            
-                    
+                break;  
                     }
        
-            
             else {
-                
-                
+               
                 System.out.println("You will lost");
                 break;
             }
        
         }
-           
+        Card Luky_Card=new Card();
+        Luky_Card.setValue(1);
+        Luky_Card.setSuit("Hearts");
+        System.out.println("This is my Lucky Card"+Lucky_Card.getValue());
+        System.out.println("This is my lucky suit"+Lucky_Card.getSuit());
         }
         
-        //insert code to ask the user for Card value and suit, create their card
-        // and search magicHand here
-        //Then report the result here
+      
     }
     
 
