@@ -48,8 +48,6 @@ public class CardTrick {
        
      
         Card Cards = new Card();
-        //c.setValue(insert call to random number generator here)
-            //c.setSuit(Card.SUITS[insert call to random number between 0-3 here])
         Cards.setValue(inputValue);
         Cards.setSuit(inputCard);
        
