@@ -21,9 +21,9 @@ public class GroupOfCards
     private ArrayList <Card> cards;
     private int size;//the size of the grouping
     
-    public GroupOfCards(int givenSize)
+    public GroupOfCards()
     {
-        size = givenSize;
+        this.cards = new ArrayList<Card>();
     }
     
     /**
@@ -34,7 +34,13 @@ public class GroupOfCards
     {
         return cards;
     }
-    
+    public void generateDeck(){
+        for(Card.Suits s : Card.Suits.values()){
+            for(Card.Values v : Card.Values.values()){
+                this.cards.add(new Card(s, v));
+            }
+        }
+    }
     public void shuffle()
     {
         Collections.shuffle(cards);
@@ -52,6 +58,23 @@ public class GroupOfCards
      */
     public void setSize(int givenSize) {
         size = givenSize;
+    }
+    public Card getCard(int i){
+        return this.cards.get(i);
+    }
+    public void removeCard(int i){
+        this.cards.remove(i);
+    }
+    public void draw(GroupOfCards deck){
+        this.cards.add(deck.getCard(0));
+        deck.removeCard(0);
+    }
+    public String toString(){
+        String elements = new String();
+        for (Card a : this.cards){
+            elements += "\n -" + a.toString();
+        }
+        return elements;
     }
     
 }//end class
