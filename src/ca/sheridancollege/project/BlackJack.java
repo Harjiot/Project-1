@@ -8,6 +8,10 @@ public class BlackJack {
         
         //Hello Message
         System.out.println("Welcome to Blackjack");
+        Scanner keysIn = new Scanner(System.in);
+        System.out.println("What is your name?");
+        String playerName = keysIn.next();
+        Player one = new Player(playerName);
         
         //Creating deck
         GroupOfCards deck = new GroupOfCards();
@@ -27,11 +31,12 @@ public class BlackJack {
         //Game loop
         while(playerMoney > 0){
             //Taking the players bet
-            System.out.println("You have $" + playerMoney + ", how much would you like to bet?");
-            double playerBet = userInput.nextDouble();
-            if (playerBet > playerMoney){
+            System.out.println("Hello " +one.getPlayerID() + ". You have $" + playerMoney + ", how much would you like to bet?");
+            double playerBet = keysIn.nextDouble();
+            while (playerBet > playerMoney){
                 System.out.println("You don't have enough money to bet that much.");
-                break;
+                System.out.println("Please place another bet.");
+                playerBet = keysIn.nextDouble();
             }
             boolean endRound = false;
             //Start Dealing
@@ -53,8 +58,13 @@ public class BlackJack {
                 //Asking player what they would like to do
                 System.out.println("What would you like to do?");
                 System.out.println("Press 1 to Hit \nPress 2 to Stand");
-                int decision = userInput.nextInt();
+                int decision = keysIn.nextInt();
                 
+                if ((decision != 1) && (decision != 2)){
+                    System.out.println("You must press a 1 or a 2");
+                    System.out.println("Press 1 to Hit \nPress 2 to Stand");
+                    decision = keysIn.nextInt();
+                }
                 //Hit
                 if(decision == 1){
                     playerHand.draw(deck);
@@ -102,7 +112,12 @@ public class BlackJack {
                 System.out.println("Push");
                 endRound = true;
             }
-            
+            //See if dealerHad value is higher than playerHand
+            if((dealerHand.cardValue() > playerHand.cardValue()) && endRound == false){
+                System.out.println("Dealer wins!");
+                playerMoney -= playerBet;
+                endRound = true;
+            }
             //See if playerHand value is higher than dealerHand
             if((playerHand.cardValue() > dealerHand.cardValue()) && endRound == false){
                 System.out.println("You Win! You beat the dealer.");
@@ -114,9 +129,18 @@ public class BlackJack {
             playerHand.putBackInDeck(deck);
             dealerHand.putBackInDeck(deck);
             System.out.println("End of hand");
+            System.out.println("Would you like to continue playing? Press 1 for yes and 2 for no");
+            int answer = keysIn.nextInt();
+            if(answer == 2){
+                System.out.println("Ok " +one.getPlayerID()+ " thanks for playing. You are leaving here with $" + playerMoney + ". Have a great day");
+                break;
+            }
+            if(answer == 1){
+                System.out.println("Alright " + one.getPlayerID() + "lets keep going");
+            }
         }
         
-        System.out.println("Game Over! You are out of money!");
+        System.out.println("Game Over!");
     }
     
 }
