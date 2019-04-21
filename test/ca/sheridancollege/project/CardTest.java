@@ -60,50 +60,40 @@ public class CardTest {
         Values result = instance.getValue();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of setValue method, of class Card.
-     */
     @Test
-    public void testSetValue() {
-        System.out.println("setValue");
-        Values value = Values.FIVE;
-        Card instance = new Card(Suit.CLUBS, Values.ACE);
-        instance.setValue(value);
+    public void testGetValueBoundary() {
+        System.out.println("getValue");
+        Card instance = new Card(Suit.CLUBS, Values.TWO);
+        Values expResult = Values.TWO;
+        Values result = instance.getValue();
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of getSuit method, of class Card.
      */
     @Test
-    public void testGetSuit() {
+    public void testGetSuitGood() {
         System.out.println("getSuit");
         Card instance = new Card(Suit.DIAMONDS, Values.EIGHT);
         Suit expResult = Suit.DIAMONDS;
         Suit result = instance.getSuit();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of setSuit method, of class Card.
-     */
     @Test
-    public void testSetSuit() {
-        System.out.println("setSuit");
-        Suit suit = Suit.DIAMONDS;
-        Card instance = new Card(Suit.CLUBS, Values.FIVE);
-        instance.setSuit(suit);
+    public void testGetSuitBad() {
+        System.out.println("getSuit");
+        Card instance = new Card(null, Values.EIGHT);
+        Suit expResult = null;
+        Suit result = instance.getSuit();
+        assertEquals(expResult, result);
     }
-
-    /**
-     * Test of toString method, of class Card.
-     */
     @Test
-    public void testToString() {
-        System.out.println("toString");
-        Card instance = new Card(Suit.CLUBS, Values.NINE);
-        String expResult = "CLUBS-NINE";
-        String result = instance.toString();
+    public void testGetSuitBoundary() {
+        System.out.println("getSuit");
+        Card instance = new Card(Suit.CLUBS, Values.EIGHT);
+        Suit expResult = Suit.CLUBS;
+        Suit result = instance.getSuit();
         assertEquals(expResult, result);
     }
     
