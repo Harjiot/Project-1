@@ -1,3 +1,7 @@
+/**
+ *@author Taha Yousuf, Harjot Kaur, Harpreet Kaur
+ *@version 1
+ */
 package ca.sheridancollege.project;
 
 import java.util.Scanner;
@@ -6,8 +10,11 @@ public class BlackJack {
 
     public static void main(String[] args) {
         
-        //Hello Message
-        System.out.println("Welcome to Blackjack");
+        //Starting new Game
+        NewGame game = new NewGame("Blackjack");
+        System.out.println("Welcome to "+ game.getGameName());
+        System.out.println("***************************************");
+        //Getting player
         Scanner keysIn = new Scanner(System.in);
         System.out.println("What is your name?");
         String playerName = keysIn.next();
@@ -20,13 +27,11 @@ public class BlackJack {
         //System.out.println(deck);
         
         //Creating Player and Dealer Deck
-        GroupOfCards playerHand = new GroupOfCards();
-        GroupOfCards dealerHand = new GroupOfCards();
+        PlayerHand playerHand = new PlayerHand();
+        PlayerHand dealerHand = new PlayerHand();
         
         //Amount of Bet for Player
         double playerMoney = 100.00;
-        
-        Scanner userInput = new Scanner(System.in);
         
         //Game loop
         while(playerMoney > 0){
@@ -49,6 +54,7 @@ public class BlackJack {
             dealerHand.draw(deck);
             
             while(true){
+                //Displaying players hand
                 System.out.println("Your Hand: "+ playerHand.toString());
                 System.out.println("Total value of your hand: " + playerHand.cardValue());
                 
@@ -87,8 +93,9 @@ public class BlackJack {
             
             //Show dealer cards
             System.out.println("Dealer cards: " + dealerHand.toString());
-            
-            //Check to see who has higher value of cards
+           
+            //Determining Winner
+            //Check to see if dealer has higher card value.
             if((dealerHand.cardValue() > playerHand.cardValue()) && endRound == false){
                 System.out.println("Dealer wins!");
                 playerMoney -= playerBet;
@@ -136,7 +143,11 @@ public class BlackJack {
                 break;
             }
             if(answer == 1){
-                System.out.println("Alright " + one.getPlayerID() + "lets keep going");
+                if(playerMoney > 0)
+                    System.out.println("Alright " + one.getPlayerID() + " lets keep going");
+                if(playerMoney <= 0){
+                    System.out.println("Sorry you don't have enough money.");
+                }
             }
         }
         

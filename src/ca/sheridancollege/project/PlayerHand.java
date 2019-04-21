@@ -5,72 +5,62 @@
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class GroupOfCards 
-{
-   
-    //The group of cards, stored in an ArrayList
-    private ArrayList <Card> cards;
-    private int size;//
+public class PlayerHand extends GroupOfCards{
     
-    public GroupOfCards()
-    {
-        this.cards = new ArrayList<Card>();
+    private ArrayList<Card> playerHand;
+    
+    public PlayerHand(){
+        this.playerHand = new ArrayList<Card>();
     }
     
+    @Override
+    public Card getCard(int i){
+        return this.playerHand.get(i);
+    }
+    @Override
+    public void removeCard(int i){
+        this.playerHand.remove(i);
+    }
+    @Override
+    public void addCard(Card card){
+        this.playerHand.add(card);
+    }
     /**
-     * A method that will get the group of cards as an ArrayList
-     * @return the group of cards.
+     * Method to draw a card from a deck
+     * @param deck 
      */
-    public ArrayList<Card> showCards()
-    {
-        return cards;
+    public void draw(GroupOfCards deck){
+        this.playerHand.add(deck.getCard(0));
+        deck.removeCard(0);
     }
-    public void generateDeck(){
-        for(Suit s : Suit.values()){
-            for(Values v : Values.values()){
-                this.cards.add(new Card(s, v));
-            }
+    /**
+     * Method to return cards into deck
+     * @param deck 
+     */
+    public void putBackInDeck(GroupOfCards deck){
+        int deckSize = this.playerHand.size();
+        
+        for(int i = 0; i < deckSize; i++){
+            deck.addCard(this.getCard(i));
+        }
+        for(int i = 0; i < deckSize; i++){
+            this.removeCard(0);
         }
     }
-    public void shuffle()
-    {
-        Collections.shuffle(cards);
-    }
-
     /**
-     * @param givenSize the max size for the group of cards
-     */
-    public void setSize(int givenSize) {
-        size = givenSize;
-    }
-    public Card getCard(int i){
-        return this.cards.get(i);
-    }
-    /**
-     * Removing a card from the deck
-     * @param i 
-     */
-    public void removeCard(int i){
-        this.cards.remove(i);
-    }
-    /**
-     * Adding a card to the deck
-     * @param card 
-     */
-    public void addCard(Card card){
-        this.cards.add(card);
-    }
-    /**
-     * Method to determine the actual value of a card.
+     * Displays the size
      * @return 
      */
+    public int getSize() {
+        return this.playerHand.size();
+    }
+    @Override
     public int cardValue(){
         int totalValue = 0;
         int aces = 0;
         
-        for(Card card: this.cards){
+        for(Card card: this.playerHand){
             switch(card.getValue()){
                 case TWO: 
                     totalValue += 2;
@@ -123,12 +113,12 @@ public class GroupOfCards
         
         return totalValue;
     }
+    @Override
     public String toString(){
         String elements = new String();
-        for (Card a : this.cards){
+        for (Card a : this.playerHand){
             elements += "\n -" + a.toString();
         }
         return elements;
     }
-    
-}//end class
+}

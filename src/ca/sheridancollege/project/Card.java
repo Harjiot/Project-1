@@ -1,29 +1,20 @@
 /**
- * SYST 17796 Project Winter 2019 Base code.
- * Students can modify and extend to implement their game.
- * Add your name as a modifier and the date!
+ *@author Taha Yousuf, Harjot Kaur, Harpreet Kaur
+ *@version 1
  */
 package ca.sheridancollege.project;
 
-/**
- * A class to be used as the base Card class for the project. Must be general
- * enough to be instantiated for any Card game. Students wishing to add to the code 
- * should remember to add themselves as a modifier.
- * @author dancye, 2018
- */
 public class Card 
-{
-    public enum Suits{DIAMONDS, CLUBS, SPADES, HEARTS};
-    public enum Values{TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE};
-    
-    private Suits suit;
+{   
+    //Setting up Suit and Values
+    private Suit suit;
     private Values value;
     
-    public Card(Suits suit, Values value){
+    public Card(Suit suit, Values value){
         this.suit = suit;
         this.value = value;
     }
-    
+    //Getting the values
     public Values getValue(){
         return this.value;
     }
@@ -32,11 +23,11 @@ public class Card
         this.value = value;
     }
     
-    public Suits getSuit(){
+    public Suit getSuit(){
         return this.suit;
     }
     
-    public void setSuit(Suits suit){
+    public void setSuit(Suit suit){
         this.suit = suit;
     }
     public String toString(){
